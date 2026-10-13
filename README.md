@@ -52,3 +52,7 @@ python3.11 generate_report.py --push
 - [ ] 跑一次 `python3.11 generate_report.py --dry-run` 看报告内容
 - [ ] 确认没问题后跑 `python3.11 generate_report.py --push`，应自动生成一个 PR
 - [ ] 通过 automation-task-manager 配置每周五 17:00 自动跑
+
+## 历史周报
+
+- [2026-W42](weekly/2026-W42.md)
