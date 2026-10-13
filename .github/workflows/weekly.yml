@@ -1,0 +1,52 @@
+name: Weekly Trending Digest
+
+on:
+  # Asia/Shanghai 周五 17:00 == UTC 周五 09:00
+  schedule:
+    - cron: "0 9 * * 5"
+  # 允许手动触发（调试用）
+  workflow_dispatch:
+    inputs:
+      week_label:
+        description: "ISO 周编号（留空则用今天）"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  # 同一次跑内串行；旧 run 自动 cancel 防止重叠
+  group: weekly-digest-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # 需要历史，避免 weekly/ 周编号冲突
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Run weekly digest (commit-to-main mode)
+        env:
+          # GitHub 自动注入：secrets.GITHUB_TOKEN 已有 contents: write
+          # actions 自动用它做 git push（通过 ACTIONS_BOT_LOGIN 等）
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PYTHONUNBUFFERED: "1"
+        run: |
+          set -euo pipefail
+          python3 generate_report.py --commit-main
+
+      - name: Confirm
+        if: success()
+        run: |
+          echo "✓ Weekly digest pushed to main"
+          git log -1 --oneline
