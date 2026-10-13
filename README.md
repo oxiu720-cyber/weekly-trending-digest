@@ -1,5 +1,5 @@
-# Weekly Trending Digest
+# weekly-trending-digest
 
-## 历史周报
+Auto-generated weekly GitHub trending digest.
 
-- [2026-W42](weekly/2026-W42.md)
+Reports live under the `weekly/` directory, one Markdown file per ISO week.
