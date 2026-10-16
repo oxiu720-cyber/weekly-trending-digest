@@ -72,3 +72,6 @@ gh run view <run-id> --log
 ---
 
 由 WorkBuddy 协助搭建，2026-10-13 完成 GitHub Actions 迁移。
+## 历史周报
+
+- [2026-W42](weekly/2026-W42.md)
