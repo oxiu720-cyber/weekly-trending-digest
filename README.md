@@ -75,3 +75,4 @@ gh run view <run-id> --log
 ## 历史周报
 
 - [2026-W42](weekly/2026-W42.md)
+- [2026-W43](weekly/2026-W43.md)
