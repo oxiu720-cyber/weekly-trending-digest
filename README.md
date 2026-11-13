@@ -78,3 +78,4 @@ gh run view <run-id> --log
 - [2026-W43](weekly/2026-W43.md)
 - [2026-W44](weekly/2026-W44.md)
 - [2026-W45](weekly/2026-W45.md)
+- [2026-W46](weekly/2026-W46.md)
